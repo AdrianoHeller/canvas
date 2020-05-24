@@ -2,7 +2,9 @@ const http = require("http");
 const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
 const routes = require("./routes");
-let PORT = process.env.PORT || 5000;
+require("dotenv").config();
+const db = require("./client");
+
 
 const servidorHttp = http.createServer((req,res) => {
 	servidorUnico(req,res);
@@ -31,7 +33,7 @@ const servidorUnico = (req,res) => {
 		
 		const reqData = new Object;
 
-		reqData['body'] = bufferStringData;
+		reqData['body'] = JSON.parse(bufferStringData);
 		reqData['method'] = method;
 		reqData['path'] = pathRawTrim ;
 		reqData['params'] = queryStringObject;
@@ -42,12 +44,13 @@ const servidorUnico = (req,res) => {
 	});
 };
 
-servidorHttp.listen(PORT, err => {
-	if(!err) console.log(`Servidor HTTP ouvindo na porta ${PORT}`);
+servidorHttp.listen(process.env.API_HTTP_PORT, err => {
+	if(!err) console.log(`Servidor HTTP ouvindo na porta ${process.env.API_HTTP_PORT}`);
 });
 
 const masterRouter = {
 	ping: routes['ping'],
 	products: routes['products'],
+	users: routes['users'].bind(null,db),
 	notFound: routes['notFound'] 
 }

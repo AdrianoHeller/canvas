@@ -1,0 +1,23 @@
+{
+  "name": "canvas",
+  "version": "1.0.0",
+  "description": "Canvas Mobile Back-End Microsservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrianoHeller/canvas.git"
+  },
+  "author": "Adriano Heller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdrianoHeller/canvas/issues"
+  },
+  "homepage": "https://github.com/AdrianoHeller/canvas#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.5.7"
+  }
+}
